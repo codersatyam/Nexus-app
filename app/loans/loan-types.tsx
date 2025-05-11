@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Image } from "react-native";
+import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
 import { useRouter } from "expo-router";
 import { Ionicons } from '@expo/vector-icons';
 
-export default function HomeScreen() {
+export default function LoanTypes() {
   const router = useRouter();
 
   const loanTypes = [
@@ -49,36 +49,16 @@ export default function HomeScreen() {
   ];
 
   return (
-    <ScrollView style={styles.container}>
-      {/* Welcome Card */}
-      <View style={styles.welcomeCard}>
-        <View style={styles.cardHeader}>
-          <View>
-            <Text style={styles.welcomeText}>Welcome to</Text>
-            <Text style={styles.nameText}>TrueLeads</Text>
-          </View>
-          <TouchableOpacity style={styles.profileButton}>
-            <Ionicons name="person-circle-outline" size={32} color="white" />
-          </TouchableOpacity>
-        </View>
-        
-        <View style={styles.cardContent}>
-          <Text style={styles.cardSubtext}>
-            Find the perfect loan for your needs
-          </Text>
-          <TouchableOpacity 
-            style={styles.calculateButton}
-            onPress={() => router.push("/calculator")}
-          >
-            <Ionicons name="calculator-outline" size={20} color="#4264ED" />
-            <Text style={styles.calculateButtonText}>Calculate EMI</Text>
-          </TouchableOpacity>
-        </View>
+    <View style={styles.loansContainer}>
+              <View style={styles.header}>
+        <TouchableOpacity 
+          style={styles.backButton} 
+          onPress={() => router.back()}
+        >
+          <Ionicons name="arrow-back" size={24} color="#007AFF" />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>Available Loans</Text>
       </View>
-
-      {/* Loan Types Section */}
-      <View style={styles.loansContainer}>
-        <Text style={styles.sectionTitle}>Available Loans</Text>
         
         {loanTypes.map(loan => (
           <TouchableOpacity 
@@ -104,24 +84,6 @@ export default function HomeScreen() {
         ))}
       </View>
 
-      {/* Quick Actions */}
-      <View style={styles.quickActions}>
-        <TouchableOpacity 
-          style={styles.actionButton}
-          onPress={() => router.push("/loans/my-loans")}
-        >
-          <Ionicons name="document-text-outline" size={24} color="#4264ED" />
-          <Text style={styles.actionText}>My Loans</Text>
-        </TouchableOpacity>
-        <TouchableOpacity 
-          style={styles.actionButton}
-          onPress={() => router.push("/support")}
-        >
-          <Ionicons name="headset-outline" size={24} color="#4264ED" />
-          <Text style={styles.actionText}>Support</Text>
-        </TouchableOpacity>
-      </View>
-    </ScrollView>
   );
 }
 
@@ -258,4 +220,19 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '500',
   },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 16,
+  },
+  backButton: {
+    padding: 8,
+  },
+  headerTitle: {
+    flex: 1,
+    fontSize: 20,
+    fontWeight: '600',
+    textAlign: 'left',
+    marginRight: 40,
+  }
 });
