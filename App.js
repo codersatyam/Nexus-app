@@ -5,7 +5,7 @@ import SplashScreen from 'react-native-splash-screen';
 const App = () => {
   useEffect(() => {
     // Hide the splash screen on mount
-    SplashScreen.hide();
+    // SplashScreen.hide();
   }, []);
 
   return (
